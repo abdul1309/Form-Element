@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Created by PhpStorm.
  * User: ashaddad
@@ -9,16 +8,30 @@
 require_once'FormElement.php';
 
 /**
- * Class TextFormElement
+ * Class InputFormElement
  */
-class TextFormElement extends FormElement
+class InputFormElement extends FormElement
 {
-    public $type;
+    private $_type;
+
     /**
+     * Set the Element´s type
+     *
+     * @param $type string $type the title of element will be displayed in a browser.
+     *
+     * @return set a type of element
+     */
+    public function setType($type)
+    {
+        $this->_type = $type;
+    }
+
+    /**
+     * Get HTML element.
+     *
      * @return string
      */
-
-    public function render($type)
+    public function render()
     {
         if ($this->mandatory == true) {
             if (!empty($_POST[$this->name])) {
@@ -28,12 +41,9 @@ class TextFormElement extends FormElement
             } else {
                 $value = '';
             }
-            $get_element = '<input type="'.$type.'" name="' . $this->name . '" value="' . $value . '" >';
+            $get_element = '<input type="'.$this->_type.'" name="' . $this->name . '" value="' . $value . '" >';
             return $this->renderLabel().$get_element;
-
         }
-
     }
-
 
 }
