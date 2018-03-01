@@ -15,14 +15,18 @@ class InputFormElement extends FormElement
     private $_type;
 
     /**
-     * Set the Element´s type
+     * InputFormElement constructor.
      *
-     * @param $type string $type the title of element will be displayed in a browser.
+     * @param string            $label     the title of element will be displayed in a browser.
+     * @param string            $name      the element´s The name of the control, which is submitted with the form data.
+     * @param string            $type      the type of input element.
+     * @param $mandatory boolean $mandatory for check.
      *
-     * @return set a type of element
+     * @return set values
      */
-    public function setType($type)
+    public function __construct($label, $name, $type, $mandatory)
     {
+        parent::__construct($label, $name, $mandatory);
         $this->_type = $type;
     }
 
@@ -40,10 +44,13 @@ class InputFormElement extends FormElement
                 $value = $this->value;
             } else {
                 $value = '';
+            }if ($this->_type == 'submit') {
+                $get_element = '<input type="'.$this->_type.'" name="' . $this->name . '" value="' .$this->label.'" >';
+            } else {
+                $get = '<input type="'.$this->_type.'" name="' . $this->name . '" value="' . $value . '" >';
+                $get_element = $this->renderLabel().$get;
             }
-            $get_element = '<input type="'.$this->_type.'" name="' . $this->name . '" value="' . $value . '" >';
-            return $this->renderLabel().$get_element;
+            return $get_element;
         }
     }
-
 }

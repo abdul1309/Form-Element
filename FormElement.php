@@ -49,5 +49,4 @@ class FormElement
     {
         return '<p><label name = ' . $this->name . '>' . $this->label . '</label></p>';
     }
-
 }

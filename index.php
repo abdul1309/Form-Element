@@ -8,15 +8,16 @@ $show_user = new ButtonFormElement('Benutzer anzeigen', 'show_user', true);
 $send_login = new ButtonFormElement('send', 'send_login', true);
 $send_register = new ButtonFormElement('send', 'send_formular_register', true);
 $cancel = new ButtonFormElement('abbrechen', 'cansel', true);
-$username = new InputFormElement('Benutzername', 'username', true);
-$password = new InputFormElement('Passwort', 'password', true);
-$password_confirm = new InputFormElement('Passwort beschtätigen', 'password_confirm', true);
-$firstname = new InputFormElement('Vorname', 'firstname', true);
-$lastname = new InputFormElement('Nachname', 'lastname', true);
-$address = new InputFormElement('Adresse', 'address', true);
-$email = new InputFormElement('Email', 'email', true);
-$date_of_birth = new InputFormElement('Geburtsdatum', 'date_of_birth', true);
+$username = new InputFormElement('Benutzername', 'username', 'text', true);
+$password = new InputFormElement('Passwort', 'password', 'password', true);
+$password_confirm = new InputFormElement('Passwort beschtätigen', 'password_confirm', 'password', true);
+$firstname = new InputFormElement('Vorname', 'firstname', 'text', true);
+$lastname = new InputFormElement('Nachname', 'lastname', 'text', true);
+$address = new InputFormElement('Adresse', 'address', 'text', true);
+$email = new InputFormElement('Email', 'email', 'email', true);
+$date_of_birth = new InputFormElement('Geburtsdatum', 'date_of_birth', 'date', true);
 $select = new SelectFormElement('Geschlecht', 'gender', true);
+$submit = new InputFormElement('löschen', 'delete', 'submit', true);
 ?>
 <html>
     <head>
@@ -24,14 +25,6 @@ $select = new SelectFormElement('Geschlecht', 'gender', true);
     <body>
         <form action="index.php" method="post">
             <?php
-            $username->setType('text');
-            $password->setType('password');
-            $password_confirm->setType('password');
-            $firstname->setType('text');
-            $lastname->setType('text');
-            $email->setType('email');
-            $address->setType('text');
-            $date_of_birth->setType('date');
             print '<p>'.$login->render().'</p>';
             print '<p>'.$register->render().'</p>';
             print '<p>'.$show_user->render().'</p>';
@@ -78,6 +71,7 @@ $select = new SelectFormElement('Geschlecht', 'gender', true);
                             $date_of_birth->setValue($zeile['date_of_birth']);
                             print $date_of_birth->render();
                             print '<p>'.$cancel->render().'</p>';
+                            print $submit->render();
                         }
                     }
                 }
